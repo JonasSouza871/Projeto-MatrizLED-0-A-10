@@ -8,7 +8,7 @@ static inline uint32_t rgb_para_uint32(uint8_t r, uint8_t g, uint8_t b) {
 void inicializar_matriz_led() {
     PIO pio = pio0;
     uint offset = pio_add_program(pio, &ws2812_program);
-    ws2812_program_init(pio, 0, offset, PINO_WS2812, 800000, RGBW_ATIVO);
+    ws2812_program_init(pio, 0, offset, PINO_WS2812, 800000, RGBW_ATIVO); //configurações da matriz de led
 }
 
 void enviar_pixel(uint32_t pixel_grb) {
@@ -18,7 +18,7 @@ void enviar_pixel(uint32_t pixel_grb) {
 void mostrar_numero(uint8_t num) {
     uint32_t cor = rgb_para_uint32(0, 0, 64);
 
-    for (int linha = 0; linha < 5; linha++) {
+    for (int linha = 0; linha < 5; linha++) {  //Configuraçoes e linhas e colunas da matriz de led
         for (int coluna = 0; coluna < 5; coluna++) {
             int indice = linha * 5 + coluna;
             enviar_pixel(padrao_numeros[num][indice] ? cor : 0);
