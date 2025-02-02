@@ -63,7 +63,7 @@ make
 1. Segure BOOTSEL e conecte o Pico
 2. Solte o botão
 3. Copie `ws2812.uf2` para o Pico
-4. Pronto!
+
 
 ## 🚀 Funcionamento
 
@@ -106,6 +106,6 @@ make
 
  ## 📞 Contato:
 
- - 👤 **Autor**:
+ - 👤 **Autor**: Jonas Souza
 
- - - 📧 **E-mail**:
+ - - 📧 **E-mail**: jonassouza871@hotmail.com
