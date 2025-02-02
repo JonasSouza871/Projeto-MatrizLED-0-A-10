@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/irq.h"
-#include "matriz_led.h"
-#include "numeros.h"
-#include "generated/ws2812.pio.h"
+#include "matriz_led.h" // Biblioteca criada com as principais funções de inicialização e configurações da matriz de Led
+#include "numeros.h" // Biblioteca que possui todos os desenhos dos números na matriz.
+#include "generated/ws2812.pio.h" // Arquivo gerado quando comilado
 
+
+// Pinagem dos botoes e leds
 #define RGBW_ATIVO false
 #define PINO_WS2812 7
 #define PINO_LED_R 13
@@ -13,14 +15,14 @@
 #define PINO_LED_B 11
 #define PINO_BOTAO_A 5
 #define PINO_BOTAO_B 6
-#define ATRASO_DEBOUNCE 400
+#define ATRASO_DEBOUNCE 400 // Valor do debounce para tirar o ruído
 
-volatile uint8_t numero_atual = 0;
+volatile uint8_t numero_atual = 0; // 
 volatile uint64_t tempo_ultima_interrupcao = 0;
 
 void callback_gpio(uint gpio, uint32_t eventos) {
     uint64_t tempo_atual = time_us_64();
-    if (tempo_atual - tempo_ultima_interrupcao < ATRASO_DEBOUNCE * 1000) return;
+    if (tempo_atual - tempo_ultima_interrupcao < ATRASO_DEBOUNCE * 1000) return; //APlicação de debounce
 
     if (gpio == PINO_BOTAO_A) {
         numero_atual = (numero_atual + 1) % 10;
@@ -38,10 +40,9 @@ int main() {
     // Configuração dos pinos
     gpio_init(PINO_LED_R);
     gpio_set_dir(PINO_LED_R, GPIO_OUT);
-
     gpio_init(PINO_BOTAO_A);
     gpio_init(PINO_BOTAO_B);
-    gpio_set_dir(PINO_BOTAO_A, GPIO_IN);
+    gpio_set_dir(PINO_BOTAO_A, GPIO_IN); 
     gpio_set_dir(PINO_BOTAO_B, GPIO_IN);
     gpio_pull_up(PINO_BOTAO_A);
     gpio_pull_up(PINO_BOTAO_B);
@@ -53,11 +54,11 @@ int main() {
     // Inicialização da matriz de LEDs
     inicializar_matriz_led();
 
-    // Mostrar o número inicial
+    // Mostrar o número inicial -> 0
     mostrar_numero(numero_atual);
 
     // Loop principal
-    while (1) {
+    while (true) { //Led vermelho pisca a cada 200 ms
         gpio_put(PINO_LED_R, 1);
         sleep_ms(100);
         gpio_put(PINO_LED_R, 0);
