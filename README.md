@@ -100,9 +100,13 @@ make
 - Use `printf` para debug
 
 ## Esquemático
+![image](https://github.com/user-attachments/assets/ec14af88-95e2-40c9-9368-5c3776a5ccab)
+
 
 
  ## 🔗 Link do Vídeo de Funcionamento:
+
+ https://drive.google.com/file/d/1u1vNdSArG-K5TmUvY6X8rvPb5mxb4vkV/view?usp=sharing
 
  ## 📞 Contato:
 
